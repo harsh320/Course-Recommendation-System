@@ -1,0 +1,103 @@
+{% extends 'index.html' %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Search Courses</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/Header-Dark.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="assets/css/Pretty-Search-Form.css">
+    <link rel="stylesheet" href="assets/css/smoothproducts.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+        <div class="container"><a class="navbar-brand logo" href="index.html">COURSE RECOMMENDER&nbsp;</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation" style="padding-right: 16px;"><a class="nav-link active ser" href="Search_course.html">sEARCH cOURSE</a></li>
+                    <li class="nav-item" role="presentation" style="padding-right: 16px;"><a class="nav-link ser" href="course.html">cOURSE</a></li>
+                    <li class="nav-item" role="presentation" style="padding-right: 16px;"><a class="nav-link" href="forum.html">FORUM</a></li>
+                    <li class="nav-item" role="presentation" style="padding-right: 16px;"><a class="nav-link" href="about_project.html">ABOUT PROJECT</a></li>
+                    <li class="nav-item" role="presentation" style="padding-right: 16px;"><a class="nav-link" href="about-us.html">About Us</a></li>
+                    <li class="nav-item" role="presentation" style="padding-right: 16px;"><a class="nav-link" href="Sign_up.html">SIGN UP</a></li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+    {% block bodyblock %}
+    <main class="page">
+        <section class="clean-block features">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">Search Courses</h2>
+                    <form class="search-form" method="GET" action="{% url 'search_course' %}" value="{{request.GET.q}}">
+                        <div class="input-group">
+                            <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-search"></i></span></div><input class="form-control" name = 'q' type="text" placeholder="Search by Course Name, Course Code, Topics">
+                            <div class="input-group-append"><button class="btn btn-light" type="button">Search </button></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    {% for c in courses %}
+                    <div class="col" style="padding-bottom: 10px;">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title"><strong>{{ c.course_name }}</strong></h4>
+                                <h6 class="text-muted card-subtitle mb-2">{{ c.course_code }}</h6>
+                                <a class="card-link" href="{% url 'online_courses' c.id c.branch_name1.id  %}">Best Online Courses Available</a></div>
+                        </div>
+                    </div>
+                    {%  endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+    {% endblock %}
+    <footer class="page-footer dark">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-sm-3 mr-auto">
+                    <h5>COURSE RECOMMENDER SYSTEM</h5>
+                    <ul>
+                        <li><a href="Search_course.html">Search Courrse</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="course.html">Course</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="about-us.html">Contact us</a></li>
+                        <li><a href="about_project.html">About Project</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 ml-auto">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="Sign_up.html">Sign up</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>Punjab Engineering College, Chandigarh</p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="assets/js/smoothproducts.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>

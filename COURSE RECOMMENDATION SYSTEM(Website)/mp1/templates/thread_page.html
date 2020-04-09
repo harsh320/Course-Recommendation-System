@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% block content%}
+<div class="container">
+
+<h3>{{ thread.question }}</h3>
+<h5>Description : {{ thread.description }}</h5>
+
+<h6>Add a comment</h6>
+
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+  {{ commentForm }}
+  <input type="submit"  value="Add Comment">
+</form>
+
+  {% for comment in comments %}
+  <div class="card" >
+     <div class="card-body">
+        <h6 class="card-title" style='text-align:left;'> <b><i> {{ comment.description }}</i></b></h6>
+        <p class="card-text"  style='text-align:left;'>{{ comment.date }} {{ comment.time }} </p>
+     </div>
+  </div>
+  <p></p>
+  <p></p>
+  {% endfor %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+
+{% block bodyblock%}
+    <br><br><br>
+    <div class="jumbotron">
+    <h1>Register to the forum</h1>
+    </div>
+{% if messages %}
+    <div class="jumbotron">
+
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+
+    </div>
+    {% endif %}
+<div class="jumbotron">
+
+  <form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{ user_form|crispy}}
+    {{ profile_form|crispy }}
+
+    <input type="submit"  value="Register">
+  </form>
+</div>
+{% endblock %}

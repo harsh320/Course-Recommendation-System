@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% block bodyblock%}
+<div class="container">
+
+  {% for t in threads %}
+  <div class="card" >
+     <div class="card-body">
+        <h4 class="card-title" style='text-align:left;'><b><i> {{ t.question }}</i></b></h4>
+        <p class="card-text"  style='text-align:left;'>{{ t.description }} </p>
+     </div>
+  </div>
+  <p></p>
+  <p></p>
+  {% endfor %}
+
+</div>
+{% endblock %}

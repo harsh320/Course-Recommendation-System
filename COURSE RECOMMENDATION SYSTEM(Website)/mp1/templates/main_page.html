@@ -1,0 +1,36 @@
+
+
+{% extends 'base.html' %}
+
+{% block content%}
+<div class="container">
+
+   <div class="row">
+      <div class="col-lg-9">
+         {% for t in thread %}
+         <div class="card" >
+            <div class="card-body">
+              <a href="{% url 'forum:thread_view' thread_id=t.2 %}">
+               <h4 class="card-title" style='text-align:left;'><b><i> {{ t.0 }}</i></b></h4>
+               <p class="card-text"  style='text-align:left;'>{{ t.1 }} </p>
+               </a>
+            </div>
+         </div>
+         <p></p>
+         <p></p>
+         {% endfor %}
+      </div>
+      <div class="col-sm">
+        <h3>Trending tags</h3>
+        {% for tag in tags %}
+        <div class="card" >
+           <div class="card-body">
+              <a class ="card-title" href="{% url 'forum:tag_view' tag_name=tag.tag_name %}">{{ tag.tag_name }}</a>
+           </div>
+        </div>
+        {% endfor %}
+      </div>
+   </div>
+
+</div>
+{% endblock %}
